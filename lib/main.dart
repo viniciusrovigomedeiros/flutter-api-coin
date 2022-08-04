@@ -11,7 +11,7 @@ void main() async {
 
   runApp(
     MaterialApp(
-      home: HomePage(),
+      home: CoinPage(),
       debugShowCheckedModeBanner: false,
     ),
   );

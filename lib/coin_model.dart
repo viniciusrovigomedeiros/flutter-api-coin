@@ -1,28 +1,21 @@
+import 'dart:convert';
+
 class CoinModel {
-  List results;
-  List currences;
-  String USD;
-  String EUR;
-  String GBP;
-  String BTC;
+  final String code;
+  final String pctChange;
+  final String bid;
 
   CoinModel({
-    required this.results,
-    required this.currences,
-    required this.USD,
-    required this.EUR,
-    required this.GBP,
-    required this.BTC,
+    required this.code,
+    required this.pctChange,
+    required this.bid,
   });
 
   factory CoinModel.fromMap(Map<String, dynamic> map) {
     return CoinModel(
-      results: List.from(map['results']),
-      currences: List.from(map['currences']),
-      USD: map['USD'] ?? '',
-      EUR: map['EUR'] ?? '',
-      GBP: map['GBP'] ?? '',
-      BTC: map['BTC'] ?? '',
+      code: map['code'] ?? '',
+      pctChange: map['pctChange'] ?? '',
+      bid: map['bid'] ?? '',
     );
   }
 }

@@ -18,7 +18,7 @@ class _CoinDescritionPageState extends State<CoinDescritionPage> {
         width: double.maxFinite,
         height: 200,
         color: Colors.pink,
-        child: Center(
+        child: const Center(
             child: Text(
           'Dolar',
           style: TextStyle(fontSize: 50),

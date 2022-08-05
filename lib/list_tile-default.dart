@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class ListTileDefault extends StatelessWidget {
@@ -14,6 +16,14 @@ class ListTileDefault extends StatelessWidget {
     required this.img,
   }) : super(key: key);
 
+  bool isNegative() {
+    if (subtitle[0] == '-') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +35,7 @@ class ListTileDefault extends StatelessWidget {
             color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 7,
-            offset: const Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -70,12 +80,13 @@ class ListTileDefault extends StatelessWidget {
         ),
         subtitle: Text(
           subtitle,
-          style: const TextStyle(fontSize: 20),
+          style: TextStyle(
+            color: (subtitle[0] == '-') ? Colors.red : Colors.green,
+            fontSize: 20,
+          ),
         ),
         tileColor: const Color.fromARGB(255, 255, 255, 255),
         trailing: const Icon(Icons.arrow_drop_down_circle_rounded),
-        //enabled: true,
-        //selected: false,
         dense: false,
       ),
     );

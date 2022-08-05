@@ -28,7 +28,7 @@ class _CoinPageState extends State<CoinPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(37, 0, 0, 0),
+        backgroundColor: Color.fromARGB(0, 0, 0, 0),
         elevation: 0,
         title: Center(
             child: Padding(
@@ -111,9 +111,9 @@ class _CoinPageState extends State<CoinPage> {
                                   );
                                 },
                                 child: ListTileDefault(
-                                  moeda: myCoin.bid,
                                   nomeMoeda: myCoin.code,
-                                  subtitle: myCoin.pctChange,
+                                  moeda: '\$${myCoin.bid}',
+                                  subtitle: (myCoin.pctChange),
                                   img:
                                       'https://cdn-icons-png.flaticon.com/512/2331/2331903.png',
                                 ),

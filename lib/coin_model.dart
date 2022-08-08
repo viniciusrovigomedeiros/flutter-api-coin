@@ -1,3 +1,6 @@
+//Comparado ao dto
+// ter from map
+
 import 'dart:convert';
 
 class CoinModel {

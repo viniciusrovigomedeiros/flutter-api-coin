@@ -1,6 +1,5 @@
 //Gerenciar os estados
 
-import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'coin_model.dart';
@@ -11,7 +10,7 @@ class CoinNotifier extends StateNotifier<List<CoinModel>> {
     getAllCoins();
   }
 
-  final _repository = CoinRepository(dio: Dio());
+  final _repository = CoinRepository();
 
   getAllCoins() async {
     state = await _repository.getAllCoins();

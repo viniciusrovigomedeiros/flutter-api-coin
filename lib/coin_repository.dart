@@ -3,29 +3,20 @@ import 'package:dio/dio.dart';
 import 'coin_model.dart';
 
 class CoinRepository {
-  final Dio dio;
+  final Dio dio = Dio();
+  final String url =
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
 
-  CoinRepository({
-    required this.dio,
-  });
-
-  List<CoinModel> coins = [];
-  late CoinModel coin;
-  late CoinModel coin1;
-  late CoinModel coin2;
   Future<List<CoinModel>> getAllCoins() async {
-    final response = await dio
-        .get('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL');
+    final response = await dio.get(url);
 
-    coins.add(coin = CoinModel.fromMap(response.data['USDBRL']));
-    coins.add(coin = CoinModel.fromMap(response.data['EURBRL']));
-    coins.add(coin = CoinModel.fromMap(response.data['BTCBRL']));
+    List<CoinModel> coins = [];
+
+    print(response.data);
+    coins = List.from(response.data.map((char) {
+      return CoinModel.fromMap(char);
+    }));
 
     return coins;
-
-    //print(response.data['USDBRL']);
-    // coins = List.from(response.data['USDBRL'].map((coin) {
-    //   return CoinModel.fromMap(coin);
-    // }));
   }
 }

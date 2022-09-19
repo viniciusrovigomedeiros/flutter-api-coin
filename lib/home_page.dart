@@ -16,15 +16,6 @@ class CoinPage extends StatefulHookConsumerWidget {
 }
 
 class _CoinPageState extends ConsumerState<CoinPage> {
-  // CoinRepository repository = CoinRepository(dio: Dio());
-  // late Future<List<CoinModel>> coins;
-
-  // @override
-  // void initState() {
-  //   coins = repository.getAllCoins();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final coins = ref.watch(coinProvider);
@@ -47,11 +38,13 @@ class _CoinPageState extends ConsumerState<CoinPage> {
                       width: 190.0,
                       height: 190.0,
                       decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(
-                                  'https://lh3.googleusercontent.com/ogw/AOh-ky0YNl4ms8J2jefS9bV85QN92L0k4ho7zRTBedkAaHk=s32-c-mo'))),
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                              'https://lh3.googleusercontent.com/ogw/AOh-ky0YNl4ms8J2jefS9bV85QN92L0k4ho7zRTBedkAaHk=s32-c-mo'),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -90,11 +83,10 @@ class _CoinPageState extends ConsumerState<CoinPage> {
                       );
                     },
                     child: ListTileDefault(
-                      nomeMoeda: myCoin.code,
-                      moeda: '\$${myCoin.bid}',
-                      subtitle: (myCoin.pctChange),
-                      img:
-                          'https://cdn-icons-png.flaticon.com/512/2331/2331903.png',
+                      nomeMoeda: myCoin.nameCoin,
+                      moeda: myCoin.ticker,
+                      subtitle: myCoin.variation.toStringAsFixed(2),
+                      img: myCoin.iconCoin,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -102,66 +94,6 @@ class _CoinPageState extends ConsumerState<CoinPage> {
               );
             },
           ),
-          // child: FutureBuilder(
-          //   future: coins,
-          //   builder: ((context, AsyncSnapshot<List<CoinModel>> snapshot) {
-          //     switch (snapshot.connectionState) {
-          //       case ConnectionState.none:
-          //       case ConnectionState.waiting:
-          //         return const Center(
-          //           child: Text(
-          //             'Carregando dados...',
-          //             style: TextStyle(fontSize: 30, color: Colors.black),
-          //             textAlign: TextAlign.center,
-          //           ),
-          //         );
-          //       default:
-          //         if (snapshot.hasError) {
-          //           return const Center(
-          //             child: Text(
-          //               'Erro ao carregar dados...',
-          //               style: TextStyle(fontSize: 30, color: Colors.black),
-          //               textAlign: TextAlign.center,
-          //             ),
-          //           );
-          //         } else {
-          //           return Padding(
-          //             padding: const EdgeInsets.all(20),
-          //             child: Padding(
-          //               padding: const EdgeInsets.symmetric(horizontal: 8),
-          //               child: ListView.builder(
-          //                 itemCount: snapshot.data?.length,
-          //                 itemBuilder: (context, index) {
-          //                   CoinModel myCoin = snapshot.data![index];
-          //                   return Column(
-          //                     children: [
-          //                       GestureDetector(
-          //                         onTap: () {
-          //                           Navigator.of(context).push(
-          //                             MaterialPageRoute(
-          //                                 builder: (context) =>
-          //                                     const CoinDescritionPage()),
-          //                           );
-          //                         },
-          //                         child: ListTileDefault(
-          //                           nomeMoeda: myCoin.code,
-          //                           moeda: '\$${myCoin.bid}',
-          //                           subtitle: (myCoin.pctChange),
-          //                           img:
-          //                               'https://cdn-icons-png.flaticon.com/512/2331/2331903.png',
-          //                         ),
-          //                       ),
-          //                       const SizedBox(height: 10),
-          //                     ],
-          //                   );
-          //                 },
-          //               ),
-          //             ),
-          //           );
-          //         }
-          //     }
-          //   }),
-          // ),
         ),
       ),
     );
